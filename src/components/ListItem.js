@@ -5,6 +5,9 @@ import { Spinner } from './common';
 import {
     BTC, ETH, ETC, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
 } from './CoinTypes';
+const BASE_COLOR = '#FFFFFF';
+const UP_COLOR = '#64FFDA';
+const DOWN_COLOR = '#FF1744';
 
 class ListItem extends Component {
 
@@ -13,6 +16,7 @@ class ListItem extends Component {
         console.log(this.props.coin);
         this.state = {
             isLoading: true,
+            backgroundColor: BASE_COLOR,
             name: this.props.coin,
             jpy_rate: '0',
             btc_rate: '0'
@@ -20,25 +24,31 @@ class ListItem extends Component {
     }
 
     componentWillMount() {
-        this.imageUrl = '../../assets/coin-icons/png/icon_btc.png';
         this.coinsFetch(this.props.coin);
+    }
+
+    componentDidMount() {
+        // 15秒ごとに値を更新
+        setInterval(() => {
+            this.coinsFetch(this.props.coin);
+        }, 10000);
     }
 
     coinsFetch(coin) {
         const apiUrl = "https://coincheck.com/api/rate/";
-        console.log(`${apiUrl}${coin}_jpy`);
+        // console.log(`${apiUrl}${coin}_jpy`);
         fetch(`${apiUrl}${coin}_jpy`)
             .then((response) => response.json())
             .then((responseData) => {
-                console.log('JPY Rate:');
-                console.log(responseData);
+                // console.log('JPY Rate:');
+                // console.log(responseData);
                 let jpy_rate = responseData.rate;
                 if (coin !== 'btc') {
                     fetch(`${apiUrl}${coin}_btc`)
                         .then((response) => response.json())
                         .then((responseData) => {
-                            console.log('BTC Rate:');
-                            console.log(responseData);
+                            // console.log('BTC Rate:');
+                            // console.log(responseData);
                             let coinRate = {
                                 jpy_rate: jpy_rate,
                                 btc_rate: responseData.rate
@@ -46,7 +56,6 @@ class ListItem extends Component {
                             this.onFetchSuccess(coin, coinRate);
                         });
                 } else {
-                    console.log('This is BTC');
                     let coinRate = {
                         jpy_rate: jpy_rate
                     };
@@ -59,81 +68,36 @@ class ListItem extends Component {
     }
 
     onFetchSuccess(coin, coinRate) {
-        console.log('onFetchSuccess');
         // BTC, ETH, ETC, DAO, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
+        let oldRate = this.state.jpy_rate;
         switch(coin) {
             case BTC:
                 this.setState({
                     isLoading: false,
+                    backgroundColor: this.compareRate(oldRate, coinRate.jpy_rate),
                     jpy_rate: coinRate.jpy_rate
                 });
-            case ETH:
+                setTimeout(() => {
+                    this.setState({ backgroundColor: BASE_COLOR });
+                }, 500);
+            default:
                 this.setState({
                     isLoading: false,
+                    backgroundColor: this.compareRate(oldRate, coinRate.jpy_rate),
                     jpy_rate: coinRate.jpy_rate,
                     btc_rate: coinRate.btc_rate
                 });
-            case ETC:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case LISK:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case FACT:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case MONERO:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case AUGUR:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case RIPPLE:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case ZCASH:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case NEM:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case LTC:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
-            case DASH:
-                this.setState({
-                    isLoading: false,
-                    jpy_rate: coinRate.jpy_rate,
-                    btc_rate: coinRate.btc_rate
-                });
+                setTimeout(() => {
+                    this.setState({ backgroundColor: BASE_COLOR });
+                }, 500);
         }
+    }
+
+    compareRate(oldRate, nextRate) {
+        if (nextRate == 0 || nextRate == oldRate) {
+            return BASE_COLOR;
+        }
+        return (nextRate > oldRate) ? UP_COLOR : DOWN_COLOR;
     }
 
     onRenderIcon(coin) {
@@ -237,7 +201,7 @@ class ListItem extends Component {
 
         if (this.props.coin === 'btc') {
             return(
-                <View style={styles.containerStyle}>
+                <View style={[styles.containerStyle, { backgroundColor: `${this.state.backgroundColor}` }]}>
                     <View>
                         { this.onRenderIcon(this.props.coin) }
                     </View>
@@ -261,7 +225,7 @@ class ListItem extends Component {
         }
 
         return(
-            <View style={styles.containerStyle}>
+            <View style={[styles.containerStyle, { backgroundColor: `${this.state.backgroundColor}` }]}>
                 <View>
                     { this.onRenderIcon(this.props.coin) }
                 </View>
