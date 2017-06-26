@@ -1,0 +1,2 @@
+# ccchecker
+Coincheck checker
