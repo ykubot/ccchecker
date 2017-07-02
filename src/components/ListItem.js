@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
-// import { Svg } from 'react-native-svg';
+import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Spinner } from './common';
 import {
     BTC, ETH, ETC, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
@@ -190,6 +190,44 @@ class ListItem extends Component {
         }
     }
 
+    onRowPress() {
+        Actions.cryptCurrencyDetail({
+            title: this.convertCoinName(this.state.name),
+            coin: this.convertCoinName(this.state.name),
+            unit: (this.state.name).toUpperCase(),
+            jpy_rate: parseFloat(this.state.jpy_rate).toFixed(3).toString()
+        });
+    }
+
+    convertCoinName(coin) {
+        switch (coin) {
+            case BTC:
+                return 'Bitcoin';
+            case ETH:
+                return 'Ethereum';
+            case ETC:
+                return 'Ethereum Classic';
+            case LISK:
+                return 'LISK';
+            case FACT:
+                return 'Factom';
+            case MONERO:
+                return 'Monero';
+            case AUGUR:
+                return 'Augur';
+            case RIPPLE:
+                return 'Ripple';
+            case ZCASH:
+                return 'Zcash';
+            case NEM:
+                return 'NEM';
+            case LTC:
+                return 'LTC';
+            case DASH:
+                return 'Dash';
+        }
+    }
+
     render() {
         if (this.state.isLoading || !this.state.name) {
             return (
@@ -201,6 +239,33 @@ class ListItem extends Component {
 
         if (this.props.coin === 'btc') {
             return(
+                <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
+                    <View style={[styles.containerStyle, { backgroundColor: `${this.state.backgroundColor}` }]}>
+                        <View>
+                            { this.onRenderIcon(this.props.coin) }
+                        </View>
+
+                        <View>
+                            <Text style={styles.titleStyle}>
+                                { this.convertCoinName(this.state.name) }
+                            </Text>
+                        </View>
+
+                        <View style={styles.ratesStyle}>
+                            <View style={styles.rateStyle}>
+                                <Text style={styles.rateTextStyle}>
+                                    { parseFloat(this.state.jpy_rate).toFixed(3) }
+                                </Text>
+                                <Text style={styles.unitTextStyle}>JPY</Text>
+                            </View>
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+            );
+        }
+
+        return(
+            <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View style={[styles.containerStyle, { backgroundColor: `${this.state.backgroundColor}` }]}>
                     <View>
                         { this.onRenderIcon(this.props.coin) }
@@ -208,49 +273,26 @@ class ListItem extends Component {
 
                     <View>
                         <Text style={styles.titleStyle}>
-                            { (this.state.name).toUpperCase() }
+                            { this.convertCoinName(this.state.name) }
                         </Text>
                     </View>
 
                     <View style={styles.ratesStyle}>
                         <View style={styles.rateStyle}>
                             <Text style={styles.rateTextStyle}>
-                                { parseFloat(this.state.jpy_rate).toFixed(4) }
+                                { parseFloat(this.state.jpy_rate).toFixed(3) }
                             </Text>
                             <Text style={styles.unitTextStyle}>JPY</Text>
                         </View>
+                        <View style={styles.rateStyle}>
+                            <Text style={styles.rateTextStyle}>
+                                { this.state.btc_rate }
+                            </Text>
+                            <Text style={styles.unitTextStyle}>BTC</Text>
+                        </View>
                     </View>
                 </View>
-            );
-        }
-
-        return(
-            <View style={[styles.containerStyle, { backgroundColor: `${this.state.backgroundColor}` }]}>
-                <View>
-                    { this.onRenderIcon(this.props.coin) }
-                </View>
-
-                <View>
-                    <Text style={styles.titleStyle}>
-                        { (this.state.name).toUpperCase() }
-                    </Text>
-                </View>
-
-                <View style={styles.ratesStyle}>
-                    <View style={styles.rateStyle}>
-                        <Text style={styles.rateTextStyle}>
-                            { parseFloat(this.state.jpy_rate).toFixed(4) }
-                        </Text>
-                        <Text style={styles.unitTextStyle}>JPY</Text>
-                    </View>
-                    <View style={styles.rateStyle}>
-                        <Text style={styles.rateTextStyle}>
-                            { this.state.btc_rate }
-                        </Text>
-                        <Text style={styles.unitTextStyle}>BTC</Text>
-                    </View>
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
