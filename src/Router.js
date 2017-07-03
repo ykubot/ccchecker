@@ -5,7 +5,7 @@ import CryptCurrencyDetail from './components/CryptCurrencyDetail';
 
 const RouterComponent = () => {
     return(
-        <Router sceneStyle={{ paddingTop: 65 }}>
+        <Router navigationBarStyle={styles.navBarStyle} titleStyle={styles.titleStyle} sceneStyle={styles.sceneStyle}>
             <Scene key="root">
                 <Scene
                     key="cryptCurrencyList"
@@ -23,5 +23,17 @@ const RouterComponent = () => {
         </Router>
     );
 };
+
+const styles = {
+    navBarStyle: {
+        backgroundColor: '#00B7C3'
+    },
+    titleStyle: {
+        color: '#FFFFFF'
+    },
+    sceneStyle: {
+        paddingTop: 65
+    }
+}
 
 export default RouterComponent;
