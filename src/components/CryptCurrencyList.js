@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, ActivityIndicator } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import ListItem from './ListItem';
-import { Spinner } from './common';
 import {
     BTC, ETH, ETC, DAO, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
 } from './CoinTypes';
