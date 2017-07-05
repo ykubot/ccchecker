@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { priceInitialized, coinPriceChanged, jpyPriceChanged } from '../actions';
 import { Input } from './common';
+import { FacebookAds } from 'expo';
 
 class CryptCurrencyDetail extends Component {
 
@@ -44,6 +45,14 @@ class CryptCurrencyDetail extends Component {
                     onChangeText={this.onJpyPriceChange.bind(this)}
                     value={this.props.jpy_price}
                 />
+
+                <FacebookAds.BannerView
+                    style={styles.banner}
+                    placementId="1934561186759278_1934566143425449"
+                    type="standard"
+                    onPress={() => console.log('click')}
+                    onError={(err) => console.log('error', err)}
+                />
             </View>
         );
     }
@@ -55,7 +64,11 @@ const styles = {
         backgroundColor: '#00B7C3',
         flexDirection: 'column',
         justifyContent: 'flex-start'
-    }
+    },
+    banner: {
+      position: 'absolute',
+      bottom: 20
+  }
 }
 
 const mapStateToProps = ({ cryptCurrency }) => {
