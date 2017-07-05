@@ -11,6 +11,7 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
                 secureTextEntry={secureTextEntry}
                 placeholder={placeholder}
                 autoCorrect={false}
+                keyboardType='numeric'
                 value={value}
                 onChangeText={onChangeText}
                 style={inputStyle}
