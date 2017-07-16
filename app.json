@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CC Checker",
-    "icon": "./assets/app-icon/icon.png",
+    "icon": "./assets/app-icon/icon-192.png",
     "version": "1.0.0",
     "slug": "cc-checker",
     "sdkVersion": "17.0.0",
