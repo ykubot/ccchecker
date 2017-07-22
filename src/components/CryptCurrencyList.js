@@ -5,6 +5,7 @@ import {
     BTC, ETH, ETC, DAO, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
 } from './CoinTypes';
 import { FacebookAds } from 'expo';
+import { PLACEMENT_ID } from './FacebookAds';
 
 class CryptCurrencyList extends Component {
 
@@ -29,7 +30,7 @@ class CryptCurrencyList extends Component {
                 </ ScrollView>
                 <FacebookAds.BannerView
                     style={styles.banner}
-                    placementId="1934561186759278_1934566143425449"
+                    placementId={PLACEMENT_ID}
                     type="standard"
                     onPress={() => console.log('click')}
                     onError={(err) => console.log('error', err)}

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { priceInitialized, coinPriceChanged, jpyPriceChanged } from '../actions';
 import { Input } from './common';
 import { FacebookAds } from 'expo';
+import { PLACEMENT_ID } from './FacebookAds';
 
 class CryptCurrencyDetail extends Component {
 
@@ -48,7 +49,7 @@ class CryptCurrencyDetail extends Component {
 
                 <FacebookAds.BannerView
                     style={styles.banner}
-                    placementId="1934561186759278_1934566143425449"
+                    placementId={PLACEMENT_ID}
                     type="standard"
                     onPress={() => console.log('click')}
                     onError={(err) => console.log('error', err)}
