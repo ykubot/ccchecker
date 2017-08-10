@@ -3,8 +3,10 @@ import { Text, Platform } from 'react-native';
 import { Router, Scene, Actions } from 'react-native-router-flux';
 import CryptCurrencyList from './components/CryptCurrencyList';
 import CryptCurrencyDetail from './components/CryptCurrencyDetail';
-import settingsModal from './components/settingsModal';
+import SettingsModal from './components/SettingsModal';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import CloseButton from './components/common/CloseButton';
+import SettingsButton from './components/common/SettingsButton';
 import {HEADER_HEIGHT_IOS, HEADER_HEIGHT_ANDROID} from './constants/Constants';
 
 const RouterComponent = () => {
@@ -15,8 +17,9 @@ const RouterComponent = () => {
                     key="cryptCurrencyList"
                     component={CryptCurrencyList}
                     title="CC Checker"
-                    onRight={() => Actions.settingsModal()}
-                    rightTitle="Settings"
+                    // onRight={() => Actions.settingsModal()}
+                    // rightTitle="Settings"
+                    renderRightButton={() => <SettingsButton />}
                     initial
                 />
 
@@ -31,9 +34,15 @@ const RouterComponent = () => {
                 key="settingsModal"
                 direction="vertical"
                 renderBackButton={() => <CloseButton />}
-                component={settingsModal}
+                component={SettingsModal}
                 schema="modal"
                 title="Settings"
+            >
+            </Scene>
+            <Scene
+                key="privacyPolicy"
+                component={PrivacyPolicy}
+                title="Privacy Policy"
             />
         </Router>
     );

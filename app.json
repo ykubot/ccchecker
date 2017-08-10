@@ -2,15 +2,16 @@
   "expo": {
     "name": "CC Checker",
     "icon": "./assets/app-icon/icon-re-512.png",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "slug": "cc-checker",
     "sdkVersion": "19.0.0",
     "ios": {
       "bundleIdentifier": "com.ykubot.ccchecker",
-      "buildNumber": "4"
+      "buildNumber": "1"
     },
     "android": {
-      "package": "com.ykubot.ccchecker"
+      "package": "com.ykubot.ccchecker",
+      "versionCode": 2
     }
   }
 }
