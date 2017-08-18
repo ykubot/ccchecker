@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Spinner } from './common';
 import {
-    BTC, ETH, ETC, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
+    BTC, ETH, ETC, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH, BCH
 } from './CoinTypes';
 const BASE_COLOR = '#FFFFFF';
 const UP_COLOR = '#64FFDA';
@@ -187,6 +187,13 @@ class ListItem extends Component {
                         source={require('../../assets/coin-icons/png/icon_dash.png')}
                     />
                 );
+            case BCH:
+                return (
+                    <Image
+                        style={styles.iconStyle}
+                        source={require('../../assets/coin-icons/png/icon_bch.png')}
+                    />
+                );
         }
     }
 
@@ -225,6 +232,8 @@ class ListItem extends Component {
                 return 'LTC';
             case DASH:
                 return 'Dash';
+            case BCH:
+                return 'Bitcoin Cash';
         }
     }
 

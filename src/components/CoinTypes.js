@@ -12,3 +12,4 @@ export const ZCASH = 'zec';
 export const NEM = 'xem';
 export const LTC = 'ltc';
 export const DASH = 'dash';
+export const BCH = 'bch';

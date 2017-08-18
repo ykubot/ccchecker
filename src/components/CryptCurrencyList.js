@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, View, Text, Platform } from 'react-native';
 import ListItem from './ListItem';
 import {
-    BTC, ETH, ETC, DAO, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
+    BTC, ETH, ETC, DAO, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH, BCH
 } from './CoinTypes';
 import { FacebookAds } from 'expo';
 import { PLACEMENT_ID_IOS, PLACEMENT_ID_ANDROID } from './FacebookAds';
@@ -26,6 +26,7 @@ class CryptCurrencyList extends Component {
                         <ListItem coin={NEM} />
                         <ListItem coin={LTC} />
                         <ListItem coin={DASH} />
+                        <ListItem coin={BCH} />
                     </View>
                 </ ScrollView>
 

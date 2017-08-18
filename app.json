@@ -2,7 +2,7 @@
   "expo": {
     "name": "CC Checker",
     "icon": "./assets/app-icon/icon-re-512.png",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "slug": "cc-checker",
     "sdkVersion": "19.0.0",
     "ios": {
@@ -11,7 +11,7 @@
     },
     "android": {
       "package": "com.ykubot.ccchecker",
-      "versionCode": 3
+      "versionCode": 4
     }
   }
 }

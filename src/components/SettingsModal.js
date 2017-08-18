@@ -9,7 +9,7 @@ class SettingsModal extends Component {
             <View style={styles.settingsContainerStyle}>
                 <View style={styles.settingListStyle}>
                     <Text style={styles.settingTextStyle}>App Version</Text>
-                    <Text style={styles.settingTextStyle}>1.0.3</Text>
+                    <Text style={styles.settingTextStyle}>1.0.4</Text>
                 </View>
                 <TouchableOpacity onPress={Actions.privacyPolicy} style={styles.settingListStyle}>
                     <Text style={styles.settingTextStyle}>Privacy Policy</Text>
