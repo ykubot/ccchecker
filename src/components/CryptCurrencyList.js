@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, Platform } from 'react-native';
 import ListItem from './ListItem';
 import {
     BTC, ETH, ETC, DAO, LISK, FACT, MONERO, AUGUR, RIPPLE, ZCASH, NEM, LTC, DASH
 } from './CoinTypes';
 import { FacebookAds } from 'expo';
-import { PLACEMENT_ID } from './FacebookAds';
+import { PLACEMENT_ID_IOS, PLACEMENT_ID_ANDROID } from './FacebookAds';
 
 class CryptCurrencyList extends Component {
 
@@ -28,13 +28,30 @@ class CryptCurrencyList extends Component {
                         <ListItem coin={DASH} />
                     </View>
                 </ ScrollView>
-                <FacebookAds.BannerView
-                    style={styles.banner}
-                    placementId={PLACEMENT_ID}
-                    type="standard"
-                    onPress={() => console.log('click')}
-                    onError={(err) => console.log('error', err)}
-                />
+
+                { (Platform.OS === 'ios') &&
+                <View>
+                    <FacebookAds.BannerView
+                        style={styles.banner}
+                        placementId={PLACEMENT_ID_IOS}
+                        type="standard"
+                        onPress={() => console.log('click')}
+                        onError={(err) => console.log('error', err)}
+                    />
+                </View>
+                }
+                { (Platform.OS === 'android') &&
+                <View>
+                    <FacebookAds.BannerView
+                        style={styles.banner}
+                        placementId={PLACEMENT_ID_ANDROID}
+                        type="standard"
+                        onPress={() => console.log('click')}
+                        onError={(err) => console.log('error', err)}
+                    />
+                </View>
+                }
+
             </View>
         );
     }

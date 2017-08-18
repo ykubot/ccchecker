@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { priceInitialized, coinPriceChanged, jpyPriceChanged } from '../actions';
 import { Input } from './common';
 import { FacebookAds } from 'expo';
-import { PLACEMENT_ID } from './FacebookAds';
+import { PLACEMENT_ID_IOS, PLACEMENT_ID_ANDROID } from './FacebookAds';
 
 class CryptCurrencyDetail extends Component {
 
@@ -47,13 +47,24 @@ class CryptCurrencyDetail extends Component {
                     value={this.props.jpy_price}
                 />
 
-                <FacebookAds.BannerView
-                    style={styles.banner}
-                    placementId={PLACEMENT_ID}
-                    type="standard"
-                    onPress={() => console.log('click')}
-                    onError={(err) => console.log('error', err)}
-                />
+                { (Platform.OS === 'ios') &&
+                    <FacebookAds.BannerView
+                        style={styles.banner}
+                        placementId={PLACEMENT_ID_IOS}
+                        type="standard"
+                        onPress={() => console.log('click')}
+                        onError={(err) => console.log('error', err)}
+                    />
+                }
+                { (Platform.OS === 'android') &&
+                    <FacebookAds.BannerView
+                        style={styles.banner}
+                        placementId={PLACEMENT_ID_ANDROID}
+                        type="standard"
+                        onPress={() => console.log('click')}
+                        onError={(err) => console.log('error', err)}
+                    />
+                }
             </View>
         );
     }
