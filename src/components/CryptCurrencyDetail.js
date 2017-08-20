@@ -48,23 +48,23 @@ class CryptCurrencyDetail extends Component {
                 />
 
                 { (Platform.OS === 'ios') &&
-                    <FacebookAds.BannerView
-                        style={styles.banner}
-                        placementId={PLACEMENT_ID_IOS}
-                        type="standard"
-                        onPress={() => console.log('click')}
-                        onError={(err) => console.log('error', err)}
-                    />
+                <FacebookAds.BannerView
+                    style={styles.banner}
+                    placementId={PLACEMENT_ID_IOS}
+                    type="standard"
+                    onPress={() => console.log('click')}
+                    onError={(err) => console.log('error', err)}
+                />
                 }
-                { (Platform.OS === 'android') &&
-                    <FacebookAds.BannerView
-                        style={styles.banner}
-                        placementId={PLACEMENT_ID_ANDROID}
-                        type="standard"
-                        onPress={() => console.log('click')}
-                        onError={(err) => console.log('error', err)}
-                    />
-                }
+                {/* { (Platform.OS === 'android') && */}
+                {/* <FacebookAds.BannerView
+                    style={styles.banner}
+                    placementId={PLACEMENT_ID_ANDROID}
+                    type="standard"
+                    onPress={() => console.log('click')}
+                    onError={(err) => console.log('error', err)}
+                /> */}
+                {/* } */}
             </View>
         );
     }
@@ -75,7 +75,8 @@ const styles = {
         flex: 1,
         backgroundColor: '#00B7C3',
         flexDirection: 'column',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        paddingBottom: 50
     },
     banner: {
       position: 'absolute',

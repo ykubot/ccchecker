@@ -43,16 +43,15 @@ class CryptCurrencyList extends Component {
                 }
                 { (Platform.OS === 'android') &&
                 <View>
-                    <FacebookAds.BannerView
+                    {/* <FacebookAds.BannerView
                         style={styles.banner}
                         placementId={PLACEMENT_ID_ANDROID}
                         type="standard"
                         onPress={() => console.log('click')}
                         onError={(err) => console.log('error', err)}
-                    />
+                    /> */}
                 </View>
                 }
-
             </View>
         );
     }
